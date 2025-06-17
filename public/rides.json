@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "offerId": "OF101",
+    "name": "Alice",
+    "car": "Honda",
+    "seatsLeft": 3,
+    "pickUp": "City A",
+    "destination": "City B",
+    "date": "2025-06-10"
+  },
+  {
+    "id": 2,
+    "offerId": "OF102",
+    "name": "Bob",
+    "car": "Toyota",
+    "seatsLeft": 2,
+    "pickUp": "City R",
+    "destination": "City S",
+    "date": "2025-06-11"
+  },
+      {
+      "id": 3,
+      "offerId": "OF112",
+      "name": "Bobby",
+      "car": "BMW",
+      "seatsLeft": 3,
+      "pickUp": "Office",
+      "destination": "City G",
+      "date": "2025-06-11"
+    },
+    {
+      "id": 4,
+      "offerId": "OF105",
+      "name": "hack",
+      "car": "Toyota",
+      "seatsLeft": 1,
+      "pickUp": "City M",
+      "destination": "Office",
+      "date": "2025-06-19"
+    }
+
+
+]

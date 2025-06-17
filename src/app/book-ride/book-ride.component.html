@@ -1,0 +1,88 @@
+<div class="card">
+  <h2>Book a Ride</h2>
+  <p>Welcome to PoolCarz — share and book rides easily!</p>
+
+  <div class="filter-buttons">
+    <button (click)="setFilter('All')">Show All Rides</button>
+
+    <button *ngIf="filterCriteria === 'All'" (click)="setFilter('To Office')">
+      To Office
+    </button>
+    <button *ngIf="filterCriteria === 'All'" (click)="setFilter('From Office')">
+      From Office
+    </button>
+    <button *ngIf="filterCriteria === 'All'" (click)="setFilter('Others')">
+      Others
+    </button>
+  </div>
+
+  <div class="filters">
+    <label>
+      Start Location:
+      <input
+        type="text"
+        [(ngModel)]="filterPickUp"
+        (input)="applyFilters()"
+        placeholder="Enter start city"
+      />
+    </label>
+
+    <label>
+      End Location:
+      <input
+        type="text"
+        [(ngModel)]="filterDestination"
+        (input)="applyFilters()"
+        placeholder="Enter destination city"
+      />
+    </label>
+
+    <label>
+      Date:
+      <input type="date" [(ngModel)]="filterDate" (change)="applyFilters()" />
+    </label>
+
+    <button (click)="clearFilters()">Clear Filters</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Date</th>
+        <th>Seats Available</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let ride of filteredRides | rideFilter : filterCriteria"
+        appMouseHover
+      >
+        <td>{{ ride.pickUp }}</td>
+        <td>{{ ride.destination }}</td>
+        <td>{{ ride.date }}</td>
+        <td>{{ ride.seatsLeft }}</td>
+        <td>
+          <button class="book-btn" (click)="selectRide(ride)">Book!</button>
+        </td>
+      </tr>
+      <tr *ngIf="(filteredRides | rideFilter : filterCriteria).length === 0">
+        <td colspan="5">No rides found matching the filters.</td>
+      </tr>
+    </tbody>
+  </table>
+
+<app-ride-details
+  *ngIf="selectedRide"
+  [ride]="selectedRide"
+  [currentUser]="currentUser"
+  (bookingDone)="handleBookingDone()"
+  (cancelView)="cancelDetailsView()"
+  (bookingDone)="handleBookingDone()"
+>
+</app-ride-details>
+
+
+  <button (click)="offerRide()">Offer A Ride!</button>
+</div>

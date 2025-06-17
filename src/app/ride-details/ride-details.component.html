@@ -1,0 +1,43 @@
+<div class="ride-details-container" *ngIf="ride">
+  <h2>Ride Details</h2>
+
+  <table class="ride-details-table">
+    <tr>
+      <th>Driver</th>
+      <th>Car</th>
+      <th>Start Location</th>
+      <th>End Location</th>
+      <th>Date</th>
+      <th>Seats Available</th>
+    </tr>
+    <tr>
+      <td>{{ ride.name }}</td>
+      <td>{{ ride.car }}</td>
+      <td>{{ ride.pickUp }}</td>
+      <td>{{ ride.destination }}</td>
+      <td>{{ ride.date }}</td>
+      <td>{{ ride.seatsLeft }}</td>
+    </tr>
+  </table>
+
+  <div *ngIf="isOwnRide" class="warning">
+    ❌ You cannot book your own ride.
+  </div>
+  <div *ngIf="bookingConfirmed" class="confirmation">
+    ✅ Booking Confirmed!
+    <br />
+    <strong>Booking ID:</strong> {{ bookingId }}
+  </div>
+
+  <div class="ride-buttons">
+    <button *ngIf="!isOwnRide && !bookingConfirmed" (click)="bookRide()" [disabled]="ride.seatsLeft === 0">
+      Book This Ride
+    </button>
+
+    <button *ngIf="bookingConfirmed" (click)="cancelBooking()" class="cancel-btn">
+  Cancel Booking
+</button>
+
+    <button (click)="goBack()">Back to List</button>
+  </div>
+</div>
