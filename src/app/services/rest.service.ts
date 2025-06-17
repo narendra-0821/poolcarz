@@ -13,6 +13,6 @@ export class RestService {
   }
 
   getUsers(): Observable<any> {
-    return this.http.get('/users.json');
+    return this.http.get<any[]>('assets/users.json');
   }
 }
